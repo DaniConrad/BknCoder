@@ -5,14 +5,14 @@ const fs = require('fs')
      this.name = object?.name || ''
      this.price = object?.price || ''
      this.db = [];
-     this.readJson = JSON.parse(fs.readFileSync('./data.json', 'utf-8'))
+     this.readJson = JSON.parse(fs.readFileSync('./js/data.json', 'utf-8'))
     }
     
     saveFile(obj){
         let db = [];
 
         db.push(...this.readJson, obj)
-        fs.writeFileSync('./data.json', JSON.stringify(db))
+        fs.writeFileSync('./js/data.json', JSON.stringify(db))
         }
 
     getById(myId){
@@ -26,13 +26,13 @@ const fs = require('fs')
             const matchId = this.readJson.filter((product)=> product.id != myId)
             this.db.push(...matchId)
 
-            fs.writeFileSync('./data.json', JSON.stringify(this.db))
+            fs.writeFileSync('./js/data.json', JSON.stringify(this.db))
         }
 
     editById(myId, name, price, tumbnail){ 
         const matchId = this.readJson.filter((product)=> product.id != myId)
         this.db.push(...matchId)
-        fs.writeFileSync('./data.json', JSON.stringify(this.db))
+        fs.writeFileSync('./js/data.json', JSON.stringify(this.db))
         
         const data = {
              id: myId,
@@ -41,11 +41,11 @@ const fs = require('fs')
              tumbnail: tumbnail
         }
         this.db.push(data)
-        fs.writeFileSync('./data.json', JSON.stringify(this.db))
+        fs.writeFileSync('./js/data.json', JSON.stringify(this.db))
     }
 
     deleteAll(){
-        fs.writeFileSync('./data.json', JSON.stringify(this.db))
+        fs.writeFileSync('./js/data.json    ', JSON.stringify(this.db))
     }
 
     getAll(){
